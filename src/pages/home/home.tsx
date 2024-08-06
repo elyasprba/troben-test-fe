@@ -6,6 +6,8 @@ import Navbar from '../../components/navbar';
 import SearchMovie from '../../components/search-movie';
 import Loading from '../../components/loading/loading';
 import Card from '../../components/card';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavoriteMovie } from '../../redux/movie';
 import { useNavigate } from 'react-router-dom';
 
 interface Movie {
@@ -16,14 +18,20 @@ interface Movie {
   Poster: string;
 }
 
+export interface IMovie {
+  movie: Movie[];
+}
+
 function Home() {
   const classes = useStyles();
 
   const [searchMovie, setSearchMovie] = useState<string>('avenger');
 
+  const debouncedMovie = useDebounce(searchMovie);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const debouncedMovie = useDebounce(searchMovie);
+  const favMovie = useSelector((state: IMovie) => state.movie);
 
   const { data: movies, isLoading } = useGetMovie(debouncedMovie);
 
@@ -39,6 +47,15 @@ function Home() {
         <Navbar />
         <SearchMovie search={searchMovie} handleChange={handleChange} />
 
+        <div className={classes.buttonWrapper}>
+          <button
+            className={classes.favoriteButton}
+            onClick={() => navigate('/favorite')}
+          >
+            List Favorite: {favMovie.length}
+          </button>
+        </div>
+
         {isLoading ? (
           <Loading />
         ) : movies?.Response === 'False' ? (
@@ -46,16 +63,14 @@ function Home() {
         ) : (
           <div className={classes.cardWrapper}>
             {movies?.Search?.map((movie: Movie, idx: number) => (
-              <div
+              <Card
                 key={idx}
-                onClick={() => navigate(`/details/${movie?.imdbID}`)}
-              >
-                <Card
-                  title={movie.Title}
-                  year={movie.Year}
-                  posterUrl={movie.Poster}
-                />
-              </div>
+                title={movie.Title}
+                year={movie.Year}
+                posterUrl={movie.Poster}
+                imdbID={movie?.imdbID}
+                handleClick={() => dispatch(addFavoriteMovie(movie))}
+              />
             ))}
           </div>
         )}
