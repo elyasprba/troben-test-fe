@@ -11,7 +11,7 @@ function Favorite() {
 
   return (
     <>
-      <div className={classes.conatiner}>
+      <div className={classes.container}>
         <h1>Favorite Movie</h1>
         <div className={classes.cardWrapper}>
           {favMovie?.map((fav, idx) => (

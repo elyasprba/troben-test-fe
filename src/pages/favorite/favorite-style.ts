@@ -1,12 +1,13 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles({
-  conatiner: {
+  container: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
     flexDirection: 'column',
+    padding: '0 20px',
   },
   cardWrapper: {
     display: 'flex',
@@ -25,6 +26,16 @@ export const useStyles = createUseStyles({
     borderRadius: '4px',
     '&:hover': {
       backgroundColor: '#003b46',
+    },
+  },
+  '@media (max-width: 420px)': {
+    container: {
+      height: '100%',
+    },
+    cardWrapper: {
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '10px',
     },
   },
 });
