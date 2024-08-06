@@ -38,4 +38,12 @@ export const useStyles = createUseStyles({
     width: '100%',
     justifyContent: 'center',
   },
+  '@media (max-width: 420px)': {
+    container: {
+      width: '50%',
+    },
+    buttonWrapper: {
+      justifyContent: 'center',
+    },
+  },
 });
