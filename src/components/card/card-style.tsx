@@ -9,7 +9,6 @@ export const useStyles = createUseStyles({
     borderRadius: '8px',
     overflow: 'hidden',
     boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-    cursor: 'pointer',
   },
   poster: {
     width: '100%',
@@ -23,9 +22,32 @@ export const useStyles = createUseStyles({
     margin: '0',
     fontSize: '18px',
     fontWeight: 'bold',
+    cursor: 'pointer',
   },
   year: {
     fontSize: '14px',
     margin: 0,
+  },
+  buttonWrapper: {
+    textAlign: 'center',
+    marginBottom: '10px',
+  },
+  favoriteButton: {
+    alignSelf: 'center',
+    padding: '10px 20px',
+    fontSize: '14px',
+    cursor: 'pointer',
+    backgroundColor: '#66a5ab',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    marginTop: '10px',
+    '&:hover': {
+      backgroundColor: '#003b46',
+    },
+  },
+  bookmark: {
+    float: 'right',
+    cursor: 'pointer',
   },
 });

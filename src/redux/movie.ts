@@ -7,7 +7,7 @@ const movieSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    add(state, action) {
+    addFavoriteMovie(state, action) {
       state.push(action.payload);
     },
     remove(state, action) {
@@ -16,5 +16,5 @@ const movieSlice = createSlice({
   },
 });
 
-export const { add, remove } = movieSlice.actions;
+export const { addFavoriteMovie, remove } = movieSlice.actions;
 export default movieSlice.reducer;
